@@ -15,8 +15,8 @@
 
   <main class="landing-shell">
     <header class="topbar">
-      <button class="model-switch" type="button" aria-label="Choisir un modele">
-        <span>Nova Flow</span>
+      <button class="model-switch" type="button" aria-label="Modele utilise">
+        <span>Gemini 2.5 Flash</span>
         <span class="caret"></span>
       </button>
 
@@ -44,6 +44,8 @@
         </p>
       </div>
 
+      <section class="chat-thread" id="chatThread" hidden aria-live="polite"></section>
+
       <form class="composer-card" aria-label="Zone de saisie du chatbot">
         <label class="sr-only" for="prompt">Votre message</label>
         <textarea id="prompt" rows="4" placeholder="Pose une question, demande une idee ou commence une conversation..."></textarea>
@@ -56,7 +58,8 @@
           </div>
 
           <div class="composer-meta">
-            <span class="status-dot"></span>
+        <span class="status-dot" title="Connexion API"></span>
+        <span class="status-text" id="statusText">Pret</span>
             <button type="submit" class="send-btn" aria-label="Envoyer le message">
               <span class="send-arrow"></span>
             </button>
@@ -71,5 +74,6 @@
       </div>
     </section>
   </main>
+  <script src="script.js"></script>
 </body>
 </html>
