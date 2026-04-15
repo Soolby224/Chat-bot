@@ -3,74 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat Bot UI</title>
+  <title>Nova Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="app-shell">
-    <section class="chat-card">
-      <header class="chat-header">
-        <div class="brand">
-          <div class="brand-badge">AI</div>
-          <div>
-            <p class="eyebrow">Assistant virtuel</p>
-            <h1>Nova Chat Bot</h1>
+  <div class="page-glow page-glow-left"></div>
+  <div class="page-glow page-glow-right"></div>
+
+  <main class="landing-shell">
+    <header class="topbar">
+      <button class="model-switch" type="button" aria-label="Choisir un modele">
+        <span>Nova Flow</span>
+        <span class="caret"></span>
+      </button>
+
+      <nav class="topnav" aria-label="Navigation principale">
+        <a href="#">Produit</a>
+        <a href="#">Tarifs</a>
+        <a href="#">API</a>
+        <button class="signin-btn" type="button">Connexion</button>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-mark" aria-hidden="true">
+        <span class="mark-piece mark-piece-top"></span>
+        <span class="mark-piece mark-piece-main"></span>
+        <span class="mark-piece mark-piece-curve"></span>
+      </div>
+
+      <div class="hero-copy">
+        <p class="eyebrow">Assistant creatif nouvelle generation</p>
+        <h1>Bonjour, je suis Nova.</h1>
+        <p class="subtitle">
+          Un espace fluide pour discuter, creer des idees, resumer du contenu
+          et imaginer de nouveaux projets sans distraction.
+        </p>
+      </div>
+
+      <form class="composer-card" aria-label="Zone de saisie du chatbot">
+        <label class="sr-only" for="prompt">Votre message</label>
+        <textarea id="prompt" rows="4" placeholder="Pose une question, demande une idee ou commence une conversation..."></textarea>
+
+        <div class="composer-footer">
+          <div class="composer-tools" aria-label="Outils rapides">
+            <button type="button" class="tool-btn" aria-label="Ajouter du contenu">+</button>
+            <button type="button" class="tool-btn" aria-label="Changer de langue">Lang</button>
+            <button type="button" class="tool-btn active" aria-label="Activer le mode creatif">Spark</button>
+          </div>
+
+          <div class="composer-meta">
+            <span class="status-dot"></span>
+            <button type="submit" class="send-btn" aria-label="Envoyer le message">
+              <span class="send-arrow"></span>
+            </button>
           </div>
         </div>
+      </form>
 
-        <button class="status-pill" type="button">En ligne</button>
-      </header>
-
-      <div class="chat-body">
-        <aside class="chat-sidebar">
-          <p class="sidebar-title">Raccourcis</p>
-          <button class="shortcut" type="button">Creer un texte</button>
-          <button class="shortcut" type="button">Repondre a une question</button>
-          <button class="shortcut" type="button">Aider pour du code</button>
-          <button class="shortcut" type="button">Resumer un contenu</button>
-        </aside>
-
-        <section class="chat-panel">
-          <div class="messages">
-            <article class="message bot">
-              <span class="avatar">N</span>
-              <div class="bubble">
-                <p class="sender">Nova</p>
-                <p>Bonjour, je suis ton assistant. Comment puis-je t'aider aujourd'hui ?</p>
-              </div>
-            </article>
-
-            <article class="message user">
-              <div class="bubble">
-                <p class="sender">Vous</p>
-                <p>Je veux creer un chatbot moderne pour mon site.</p>
-              </div>
-            </article>
-
-            <article class="message bot">
-              <span class="avatar">N</span>
-              <div class="bubble">
-                <p class="sender">Nova</p>
-                <p>Parfait. Je peux t'aider a concevoir l'interface, la conversation et les fonctions du bot.</p>
-              </div>
-            </article>
-          </div>
-
-          <div class="suggestions">
-            <button type="button">Interface moderne</button>
-            <button type="button">Ajouter une FAQ</button>
-            <button type="button">Connecter une IA</button>
-          </div>
-
-          <form class="chat-input">
-            <label class="sr-only" for="message">Votre message</label>
-            <input id="message" type="text" placeholder="Ecrivez votre message..." />
-            <button type="submit">Envoyer</button>
-          </form>
-        </section>
+      <div class="prompt-row" aria-label="Suggestions">
+        <button type="button">Ecris une page d'accueil</button>
+        <button type="button">Explique un code simplement</button>
+        <button type="button">Trouve des idees de business</button>
       </div>
     </section>
   </main>
