@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Bot UI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="chat-card">
+      <header class="chat-header">
+        <div class="brand">
+          <div class="brand-badge">AI</div>
+          <div>
+            <p class="eyebrow">Assistant virtuel</p>
+            <h1>Nova Chat Bot</h1>
+          </div>
+        </div>
+
+        <button class="status-pill" type="button">En ligne</button>
+      </header>
+
+      <div class="chat-body">
+        <aside class="chat-sidebar">
+          <p class="sidebar-title">Raccourcis</p>
+          <button class="shortcut" type="button">Creer un texte</button>
+          <button class="shortcut" type="button">Repondre a une question</button>
+          <button class="shortcut" type="button">Aider pour du code</button>
+          <button class="shortcut" type="button">Resumer un contenu</button>
+        </aside>
+
+        <section class="chat-panel">
+          <div class="messages">
+            <article class="message bot">
+              <span class="avatar">N</span>
+              <div class="bubble">
+                <p class="sender">Nova</p>
+                <p>Bonjour, je suis ton assistant. Comment puis-je t'aider aujourd'hui ?</p>
+              </div>
+            </article>
+
+            <article class="message user">
+              <div class="bubble">
+                <p class="sender">Vous</p>
+                <p>Je veux creer un chatbot moderne pour mon site.</p>
+              </div>
+            </article>
+
+            <article class="message bot">
+              <span class="avatar">N</span>
+              <div class="bubble">
+                <p class="sender">Nova</p>
+                <p>Parfait. Je peux t'aider a concevoir l'interface, la conversation et les fonctions du bot.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="suggestions">
+            <button type="button">Interface moderne</button>
+            <button type="button">Ajouter une FAQ</button>
+            <button type="button">Connecter une IA</button>
+          </div>
+
+          <form class="chat-input">
+            <label class="sr-only" for="message">Votre message</label>
+            <input id="message" type="text" placeholder="Ecrivez votre message..." />
+            <button type="submit">Envoyer</button>
+          </form>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
