@@ -5,6 +5,7 @@
   const sendButton = document.querySelector(".send-btn");
   const statusText = document.getElementById("statusText");
   const promptButtons = document.querySelectorAll(".prompt-row button");
+  const apiUrl = "/api/chat";
 
   const conversation = [];
   let isSending = false;
@@ -20,6 +21,27 @@
 
   const setStatus = (message) => {
     statusText.textContent = message;
+  };
+
+  const parseApiResponse = async (response) => {
+    const contentType = response.headers.get("content-type") || "";
+    const rawText = await response.text();
+
+    if (contentType.includes("application/json")) {
+      try {
+        return JSON.parse(rawText);
+      } catch {
+        throw new Error("La reponse JSON du serveur est invalide.");
+      }
+    }
+
+    if (rawText.trim().startsWith("<")) {
+      throw new Error(
+        "Le site en ligne ne fournit pas l'API /api/chat. Cette page est probablement ouverte sur GitHub Pages au lieu d'un hebergement avec backend."
+      );
+    }
+
+    throw new Error(rawText || "La reponse du serveur est invalide.");
   };
 
   const addMessage = (role, content, extraClass = "") => {
@@ -52,7 +74,7 @@
     const loadingMessage = addMessage("assistant", "Nova reflechit...", "loading");
 
     try {
-      const response = await fetch("/api/chat", {
+      const response = await fetch(apiUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -62,7 +84,7 @@
         })
       });
 
-      const data = await response.json();
+      const data = await parseApiResponse(response);
 
       if (!response.ok) {
         throw new Error(data.error || "La requete a echoue.");

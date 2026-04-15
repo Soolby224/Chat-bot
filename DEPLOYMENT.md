@@ -18,6 +18,12 @@ The site will then serve:
 - `index.html` as the main page
 - `/api/chat` as the online Gemini backend
 
+## Important
+
+GitHub Pages alone cannot run the chatbot backend.
+If you open the site on `github.io`, the frontend loads, but `/api/chat` returns HTML instead of JSON.
+To make the chat work online, open the Vercel deployment URL, not the GitHub Pages URL.
+
 ## Local mode
 
 The project still supports local testing with:
