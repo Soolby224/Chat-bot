@@ -1,8 +1,14 @@
-export default async function handler(request) {
-  if (request.method !== "POST") {
-    return jsonResponse({ error: "Method not allowed." }, 405);
-  }
+export function GET() {
+  return jsonResponse(
+    {
+      ok: true,
+      message: "API chat disponible. Utilise POST /api/chat."
+    },
+    200
+  );
+}
 
+export async function POST(request) {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
     return jsonResponse(
@@ -32,30 +38,45 @@ export default async function handler(request) {
     return jsonResponse({ error: "Aucun message utilisateur a envoyer." }, 400);
   }
 
-  const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-goog-api-key": apiKey
-      },
-      body: JSON.stringify({
-        systemInstruction: {
-          parts: [
-            {
-              text: "Tu es Nova, un assistant francophone clair, utile et concis. Tu reponds avec un ton naturel et professionnel."
-            }
-          ]
+  let response;
+
+  try {
+    response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-goog-api-key": apiKey
         },
-        contents,
-        generationConfig: {
-          temperature: 0.7,
-          maxOutputTokens: 1024
-        }
-      })
-    }
-  );
+        body: JSON.stringify({
+          systemInstruction: {
+            parts: [
+              {
+                text: "Tu es Nova, un assistant francophone clair, utile et concis. Tu reponds avec un ton naturel et professionnel."
+              }
+            ]
+          },
+          contents,
+          generationConfig: {
+            temperature: 0.7,
+            maxOutputTokens: 1024
+          }
+        }),
+        signal: AbortSignal.timeout(20000)
+      }
+    );
+  } catch (error) {
+    return jsonResponse(
+      {
+        error:
+          error?.name === "TimeoutError"
+            ? "Gemini met trop de temps a repondre."
+            : "Impossible de joindre l API Gemini."
+      },
+      504
+    );
+  }
 
   let payload;
   try {
