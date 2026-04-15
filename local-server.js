@@ -34,9 +34,11 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(PORT, () => {
-  console.log(`Nova Studio disponible sur http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== "test") {
+  server.listen(PORT, () => {
+    console.log(`Nova Studio disponible sur http://localhost:${PORT}`);
+  });
+}
 
 async function handleChat(req, res) {
   if (!process.env.GEMINI_API_KEY) {
@@ -210,4 +212,9 @@ function loadEnvFile(envPath) {
       process.env[key] = value;
     }
   }
+}
+
+// Exporter les fonctions pour les tests unitaires
+if (process.env.NODE_ENV === "test") {
+  module.exports = { isValidMessage, loadEnvFile, server, handleChat };
 }

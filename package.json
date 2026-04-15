@@ -4,6 +4,6 @@
   "version": "1.0.0",
   "description": "Interface de chatbot reliee a l API Gemini",
   "scripts": {
-    "start": "node server.js"
+    "start": "node local-server.js"
   }
 }
