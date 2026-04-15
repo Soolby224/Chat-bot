@@ -48,18 +48,34 @@
 
       <form class="composer-card" aria-label="Zone de saisie du chatbot">
         <label class="sr-only" for="prompt">Votre message</label>
+        <input
+          id="fileInput"
+          class="sr-only"
+          type="file"
+          multiple
+          accept=".txt,.md,.markdown,.csv,.json,.js,.ts,.tsx,.jsx,.py,.java,.c,.cpp,.h,.hpp,.html,.css,.xml,.yml,.yaml,.log,.sql,.php,.rb,.go,.rs,.sh"
+        >
         <textarea id="prompt" rows="4" placeholder="Pose une question, demande une idee ou commence une conversation..."></textarea>
+
+        <section class="attachment-panel" id="attachmentPanel" hidden aria-label="Fichiers joints">
+          <p class="attachment-label">Fichiers ajoutes</p>
+          <div class="attachment-list" id="attachmentList"></div>
+        </section>
 
         <div class="composer-footer">
           <div class="composer-tools" aria-label="Outils rapides">
-            <button type="button" class="tool-btn" aria-label="Ajouter du contenu">+</button>
-            <button type="button" class="tool-btn" aria-label="Changer de langue">Lang</button>
-            <button type="button" class="tool-btn active" aria-label="Activer le mode creatif">Spark</button>
+            <button type="button" class="tool-btn attach-btn" id="attachButton" aria-label="Ajouter des fichiers">
+              <span class="tool-icon">+</span>
+              <span>Fichier</span>
+            </button>
+            <p class="composer-help">
+              Glisse-depose ou ajoute des fichiers texte, markdown, CSV, JSON et code.
+            </p>
           </div>
 
           <div class="composer-meta">
-        <span class="status-dot" title="Connexion API"></span>
-        <span class="status-text" id="statusText">Pret</span>
+            <span class="status-dot" title="Connexion API"></span>
+            <span class="status-text" id="statusText">Pret</span>
             <button type="submit" class="send-btn" aria-label="Envoyer le message">
               <span class="send-arrow"></span>
             </button>
@@ -68,8 +84,8 @@
       </form>
 
       <div class="prompt-row" aria-label="Suggestions">
-        <button type="button">Ecris une page d'accueil</button>
-        <button type="button">Explique un code simplement</button>
+        <button type="button">Resume ce document</button>
+        <button type="button">Explique ce code simplement</button>
         <button type="button">Trouve des idees de business</button>
       </div>
     </section>
